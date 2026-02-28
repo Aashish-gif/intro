@@ -164,7 +164,6 @@ const About: React.FC = () => {
               </span>
             </motion.div>
           </motion.div>
-          </div>
 
           <motion.div className="space-y-6" variants={itemVariants}>
             <div className="relative">
@@ -182,6 +181,7 @@ const About: React.FC = () => {
               </motion.div>
             </div>
           </motion.div>
+        </motion.div>
         </motion.div>
 
         <motion.div
