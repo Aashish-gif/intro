@@ -8,6 +8,11 @@ import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import BentoGrid from './components/BentoGrid';
+import HeritageBackground from './components/HeritageBackground';
+import SoundToggle from './components/SoundToggle';
+import SystemStatusBar from './components/SystemStatusBar';
+import { HapticSoundscapeProvider } from './context/HapticSoundscapeContext';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,16 +39,29 @@ function App() {
   }
 
   return (
-    <div className="bg-[#0b0c10] text-[#F5F5F5] overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Certifications />
-      <Contact />
-      <Footer />
-    </div>
+    <HapticSoundscapeProvider>
+      <div className="bg-[#0b0c10] text-[#F5F5F5] overflow-x-hidden relative">
+        {/* Heritage Background Layer */}
+        <HeritageBackground />
+        
+        {/* Main Content */}
+        <div className="relative z-10">
+          <Navbar />
+          <Hero />
+          <BentoGrid />
+          <About />
+          <Skills />
+          <Projects />
+          <Certifications />
+          <Contact />
+          <Footer />
+        </div>
+
+        {/* UI Overlays */}
+        <SoundToggle />
+        <SystemStatusBar />
+      </div>
+    </HapticSoundscapeProvider>
   );
 }
 
