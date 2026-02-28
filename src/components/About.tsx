@@ -182,7 +182,6 @@ const About: React.FC = () => {
             </div>
           </motion.div>
         </motion.div>
-        </motion.div>
 
         <motion.div
           className="mt-24 grid md:grid-cols-3 gap-10"
