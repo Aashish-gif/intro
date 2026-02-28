@@ -22,9 +22,19 @@
   font-family: 'Inter', sans-serif;
 }
 
-body {
+body, html {
   background-color: var(--color-obsidian);
   color: var(--color-text);
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--color-obsidian);
 }
 
 @layer utilities {

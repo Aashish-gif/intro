@@ -32,12 +32,15 @@ function App() {
     // Prevent scroll during loading
     if (isLoading) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     }
 
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     };
   }, [isLoading]);
 
@@ -47,7 +50,10 @@ function App() {
 
   return (
     <HapticSoundscapeProvider>
-      <div className="bg-obsidian-200 text-[#F5F5F5] overflow-x-hidden relative cursor-none">
+      <div 
+        className="min-h-screen w-full text-[#F5F5F5] overflow-x-hidden relative"
+        style={{ backgroundColor: '#050505' }}
+      >
         {/* Magnetic Cursor */}
         <MagneticCursor />
         
@@ -55,7 +61,7 @@ function App() {
         <HeritageBackground />
         
         {/* Main Content */}
-        <div className="relative z-10">
+        <div className="relative z-20">
           <Navbar />
           <Hero />
           <BentoGrid />

@@ -8,18 +8,21 @@ const Loader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(onComplete, 800);
+          setTimeout(onComplete, 300);
           return 100;
         }
-        return prev + 1.5;
+        return prev + 3; // Faster progress
       });
-    }, 40);
+    }, 30);
 
     return () => clearInterval(interval);
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 bg-[#0b0c10] flex items-center justify-center z-50 overflow-hidden">
+    <div 
+      className="fixed inset-0 flex items-center justify-center z-50 overflow-hidden"
+      style={{ backgroundColor: '#050505' }}
+    >
       {/* Animated Background */}
       <div className="absolute inset-0">
         {/* Rotating Hexagons */}
