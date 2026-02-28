@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Menu, X, User, Code, Award, Mail } from 'lucide-react';
 
 const Navbar: React.FC = () => {
@@ -23,11 +24,16 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled 
-        ? 'glass backdrop-blur-md border-b border-[#F5F5F5]/10' 
-        : 'bg-transparent'
-    }`}>
+    <motion.nav
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        isScrolled 
+          ? 'glass-gold backdrop-blur-md border-b border-gold-accent/20' 
+          : 'bg-transparent'
+      }`}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5, type: 'spring', stiffness: 100, damping: 20 }}
+    >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           <a 
@@ -82,7 +88,7 @@ const Navbar: React.FC = () => {
           </div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

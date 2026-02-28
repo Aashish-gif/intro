@@ -28,6 +28,15 @@ body {
 }
 
 @layer utilities {
+  /* Semantic Text Colors */
+  .text {
+    @apply text-[#F5F5F5];
+  }
+  
+  .text-muted {
+    @apply text-[#B0B0B0];
+  }
+
   /* Luxury Text Gradients */
   .text-gradient {
     background: linear-gradient(135deg, #D4AF37 0%, #C0C0C0 100%);
@@ -60,6 +69,11 @@ body {
     background: rgba(245, 245, 245, 0.08);
     backdrop-filter: blur(30px);
     border: 1px solid rgba(212, 175, 55, 0.15);
+  }
+
+  /* Interactive Elements */
+  .interactive {
+    @apply cursor-pointer transition-all duration-300;
   }
   
   /* Luxury Glow Effects */
