@@ -1,82 +1,157 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
+import TempleGeometryPattern from './TempleGeometryPattern';
 
 const Hero: React.FC = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+      },
+    },
+  };
+
+  const lineVariants = {
+    hidden: { scaleX: 0 },
+    visible: {
+      scaleX: 1,
+      transition: {
+        duration: 0.8,
+        ease: 'easeOut',
+      },
+    },
+  };
+
   return (
-    <section id="hero" className="min-h-screen relative flex items-center justify-center geometric-bg overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Particles */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#00FFFF] rounded-full animate-float opacity-60"></div>
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-[#FFD700] rounded-full animate-pulse-slow opacity-80"></div>
-        <div className="absolute bottom-1/4 left-1/3 w-3 h-3 bg-[#00FFFF] rounded-full animate-float opacity-40" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-2/3 right-1/4 w-2 h-2 bg-[#FFD700] rounded-full animate-pulse-slow opacity-70" style={{ animationDelay: '1s' }}></div>
-        
-        {/* Geometric Shapes */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 border border-[#00FFFF]/20 rounded-full animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 border border-[#FFD700]/20 rounded-full animate-float"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-[#00FFFF]/10 rounded-full animate-pulse-slow"></div>
-        
-        {/* Hexagonal Grid */}
-        <div className="absolute top-10 right-10 hexagon opacity-20" style={{ animationDelay: '0s' }}></div>
-        <div className="absolute bottom-20 left-10 hexagon opacity-15" style={{ animationDelay: '1.5s' }}></div>
-        <div className="absolute top-1/2 right-20 hexagon opacity-25" style={{ animationDelay: '3s' }}></div>
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-obsidian-200">
+      {/* Temple Geometry Background */}
+      <div className="absolute inset-0">
+        <TempleGeometryPattern opacity={0.06} animated={true} />
       </div>
 
-      <div className="container-custom relative z-10">
-        <div className="text-center">
-          <div className="mb-8">
-            <h1 className="text-6xl md:text-8xl font-bold text-[#F5F5F5] mb-6 leading-tight">
-           Aashish Tejwani
-            </h1>
-            <div className="text-2xl md:text-3xl text-gradient font-semibold mb-4">
-              Elite Innovator
-            </div>
-            <p className="text-xl text-[#F5F5F5]/80 max-w-4xl mx-auto leading-relaxed">
-Architecting next-generation systems with efficient algorithms and high-precision solutions.              <br />
-              <span className="text-gradient font-medium">Transforming complexity into elegance, data into intelligence.</span>
-            </p>
-          </div>
+      {/* Gradient overlay circles */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-gold-accent/5 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-tl from-silver-electric/5 to-transparent rounded-full blur-3xl"></div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
-            <a
-              href="#projects"
-              className="group inline-flex items-center px-10 py-4 bg-gradient-to-r from-[#FFD700] to-[#00FFFF] text-[#0b0c10] rounded-full font-bold hover:glow-gradient hover:scale-105 transition-all duration-300"
-            >
+      {/* Main Content */}
+      <motion.div
+        className="relative z-10 container-custom text-center"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {/* Decorative line above headline */}
+        <motion.div className="flex items-center justify-center mb-8" variants={itemVariants}>
+          <motion.div
+            className="h-px bg-gradient-to-r from-transparent via-gold-accent to-transparent w-32"
+            variants={lineVariants}
+          ></motion.div>
+        </motion.div>
+
+        {/* Main Headline */}
+        <motion.div className="mb-8" variants={itemVariants}>
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold text-text mb-4 leading-tight tracking-tight">
+            ENGINEERING LEGACY
+          </h1>
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-accent via-silver-electric to-gold-accent leading-tight tracking-tight">
+            DESIGNING FUTURE
+          </h2>
+        </motion.div>
+
+        {/* Subheadline */}
+        <motion.p className="text-lg md:text-xl text-text-muted max-w-3xl mx-auto leading-relaxed mb-12" variants={itemVariants}>
+          Full-Stack Engineer merging structural logic with cultural soul. Architecting next-generation systems through efficient algorithms, high-precision solutions, and relentless attention to detail.
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16" variants={itemVariants}>
+          <motion.a
+            href="#projects"
+            className="interactive group inline-flex items-center px-12 py-4 bg-gold-accent text-obsidian-200 rounded-full font-bold relative overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="relative z-10 flex items-center gap-3">
               View Projects
-              <ArrowRight className="ml-3 group-hover:translate-x-1 transition-transform duration-300" size={20} />
-            </a>
-            <a
-              href="https://drive.google.com/file/d/1CjHN8IxQO9W3t0TDMxyDhhUEpoIqrzj7/view?usp=sharing"
-              className="group inline-flex items-center px-10 py-4 glass text-[#F5F5F5] rounded-full font-bold hover:glow-gradient hover:scale-105 transition-all duration-300"
-            >
-              Download Resume
-              <Download className="ml-3 group-hover:translate-y-1 transition-transform duration-300" size={20} />
-            </a>
-          </div>
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </span>
+            <motion.div
+              className="absolute inset-0 bg-gold-light"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ zIndex: -1 }}
+            />
+          </motion.a>
 
-          <div className="flex items-center justify-center space-x-8">
-            <a
-              href="https://github.com/Aashish-gif"
-              className="p-4 glass rounded-full text-[#F5F5F5] hover:text-[#FFD700] hover:glow-gold transition-all duration-300 hover:scale-110"
-            >
-              <Github size={28} />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/aashish-tejwani/"
-              className="p-4 glass rounded-full text-[#F5F5F5] hover:text-[#00FFFF] hover:glow-cyan transition-all duration-300 hover:scale-110"
-            >
-              <Linkedin size={28} />
-            </a>
-            <a
-              href="tajcg29082024@gmail.com"
-              className="p-4 glass rounded-full text-[#F5F5F5] hover:text-gradient hover:glow-gradient transition-all duration-300 hover:scale-110"
-            >
-              <Mail size={28} />
-            </a>
+          <motion.a
+            href="https://drive.google.com/file/d/1CjHN8IxQO9W3t0TDMxyDhhUEpoIqrzj7/view?usp=sharing"
+            className="interactive group inline-flex items-center px-12 py-4 glass-gold rounded-full font-bold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="flex items-center gap-3">
+              Download Resume
+              <Download size={20} className="group-hover:translate-y-1 transition-transform" />
+            </span>
+          </motion.a>
+        </motion.div>
+
+        {/* Social Links */}
+        <motion.div className="flex items-center justify-center gap-6" variants={itemVariants}>
+          <motion.a
+            href="https://github.com/Aashish-gif"
+            className="interactive p-4 glass rounded-full text-text hover:text-gold-accent transition-colors group"
+            whileHover={{ scale: 1.1, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Github size={24} className="group-hover:glow-gold" />
+          </motion.a>
+          <motion.a
+            href="https://www.linkedin.com/in/aashish-tejwani/"
+            className="interactive p-4 glass rounded-full text-text hover:text-silver-electric transition-colors group"
+            whileHover={{ scale: 1.1, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Linkedin size={24} className="group-hover:glow-silver" />
+          </motion.a>
+          <motion.a
+            href="mailto:tajcg29082024@gmail.com"
+            className="interactive p-4 glass rounded-full text-text hover:text-gold-accent transition-colors group"
+            whileHover={{ scale: 1.1, y: -4 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Mail size={24} className="group-hover:glow-gold" />
+          </motion.a>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-6 h-10 border-2 border-gold-accent rounded-full flex items-center justify-center">
+            <div className="w-1 h-2 bg-gold-accent rounded-full animate-pulse"></div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

@@ -9,13 +9,20 @@ import Certifications from './components/Certifications';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BentoGrid from './components/BentoGrid';
+import HackathonHallOfFame from './components/HackathonHallOfFame';
+import HorizontalProjectScroll from './components/HorizontalProjectScroll';
 import HeritageBackground from './components/HeritageBackground';
 import SoundToggle from './components/SoundToggle';
 import SystemStatusBar from './components/SystemStatusBar';
+import MagneticCursor from './components/MagneticCursor';
 import { HapticSoundscapeProvider } from './context/HapticSoundscapeContext';
+import { useSmoothScroll } from './hooks/useSmoothScroll';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  
+  // Enable smooth scroll
+  useSmoothScroll();
 
   const handleLoadingComplete = () => {
     setIsLoading(false);
@@ -40,7 +47,10 @@ function App() {
 
   return (
     <HapticSoundscapeProvider>
-      <div className="bg-[#0b0c10] text-[#F5F5F5] overflow-x-hidden relative">
+      <div className="bg-obsidian-200 text-[#F5F5F5] overflow-x-hidden relative cursor-none">
+        {/* Magnetic Cursor */}
+        <MagneticCursor />
+        
         {/* Heritage Background Layer */}
         <HeritageBackground />
         
@@ -49,6 +59,8 @@ function App() {
           <Navbar />
           <Hero />
           <BentoGrid />
+          <HackathonHallOfFame />
+          <HorizontalProjectScroll />
           <About />
           <Skills />
           <Projects />

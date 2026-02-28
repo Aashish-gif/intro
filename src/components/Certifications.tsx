@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Award, Calendar, ExternalLink, CheckCircle } from 'lucide-react';
 
 const Certifications: React.FC = () => {
@@ -61,61 +62,77 @@ const Certifications: React.FC = () => {
   ];
 
   return (
-    <section id="certifications" className="section-padding bg-gradient-to-b from-[#0d1015] to-[#0b0c10]">
+    <section id="certifications" className="section-padding bg-gradient-to-b from-obsidian-100 to-obsidian-200">
       <div className="container-custom">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-6xl font-bold text-[#F5F5F5] mb-8">
-            Elite Certifications
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-5xl md:text-6xl font-bold text-text mb-8">
+            Elite <span className="text-gold-accent">Certifications</span>
           </h2>
-          <p className="text-2xl text-[#F5F5F5]/70 max-w-3xl mx-auto">
+          <p className="text-2xl text-text-muted max-w-3xl mx-auto">
             Industry-recognized credentials demonstrating mastery across multiple domains
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
           {certifications.map((cert, index) => (
-            <div
+            <motion.div
               key={cert.id}
-              className="group glass rounded-2xl p-8 hover:glow-gradient transition-all duration-500 hover:-translate-y-3"
-              style={{ animationDelay: `${index * 150}ms` }}
+              className="interactive group glass-gold rounded-2xl p-8 hover:glow-gold-strong transition-all duration-500"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -8 }}
             >
               <div className="flex items-center space-x-4 mb-6">
-                <div className="w-20 h-20 glass rounded-2xl p-3 glow-gold group-hover:glow-cyan transition-all duration-300">
+                <motion.div
+                  className="w-20 h-20 glass-gold rounded-2xl p-3 glow-gold group-hover:glow-gold-strong transition-all duration-300"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                >
                   <img
                     src={cert.image}
                     alt={cert.issuer}
                     className="w-full h-full object-cover rounded-xl"
                   />
-                </div>
+                </motion.div>
                 <div className="flex-1">
                   <div className="flex items-center space-x-2 mb-2">
-                    <Award className="w-6 h-6 text-[#FFD700]" />
-                    <span className="text-[#FFD700] font-semibold">{cert.level}</span>
+                    <Award className="w-6 h-6 text-gold-accent" />
+                    <span className="text-gold-accent font-semibold text-sm uppercase tracking-wide">{cert.level}</span>
                   </div>
-                  <h3 className="text-xl font-bold text-[#F5F5F5] group-hover:text-gradient transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-text group-hover:text-gold-accent transition-colors duration-300">
                     {cert.title}
                   </h3>
                 </div>
               </div>
 
               <div className="space-y-3 mb-6">
-                <p className="text-[#F5F5F5]/90 font-semibold text-lg">{cert.issuer}</p>
-                <div className="flex items-center space-x-3 text-[#F5F5F5]/60">
+                <p className="text-text/90 font-semibold text-lg">{cert.issuer}</p>
+                <div className="flex items-center space-x-3 text-text-muted">
                   <Calendar size={16} />
                   <span>{cert.date}</span>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-3">
-                  <CheckCircle className="w-5 h-5 text-[#00FFFF]" />
-                  <span className="text-[#00FFFF] font-semibold">Verified</span>
-                </div>
-                <button className="p-3 glass rounded-xl hover:glow-gradient transition-all duration-300 group">
-                  <ExternalLink className="w-5 h-5 text-[#F5F5F5] group-hover:text-[#FFD700] transition-colors duration-300" />
-                </button>
+              <div className="flex items-center justify-between pt-6 border-t border-gold-accent/20">
+                <motion.div className="flex items-center space-x-3" whileHover={{ scale: 1.05 }}>
+                  <CheckCircle className="w-5 h-5 text-silver-electric" />
+                  <span className="text-silver-electric font-semibold text-sm">Verified</span>
+                </motion.div>
+                <motion.button
+                  className="interactive p-3 glass-gold rounded-xl hover:glow-gold transition-all duration-300 group"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <ExternalLink className="w-5 h-5 text-text group-hover:text-gold-accent transition-colors duration-300" />
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
