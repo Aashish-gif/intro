@@ -130,7 +130,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Code, Database, Settings, Globe, Lock, GitBranch } from 'lucide-react';
+import { Code, Database, Settings, Globe, Lock, GitBranch, Palette } from 'lucide-react';
 
 const Skills: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -166,7 +166,7 @@ const Skills: React.FC = () => {
       category: 'Tools',
       skills: [
         { name: 'Git', level: 96, icon: GitBranch },
-        { name: 'Figma', level: 85, icon: Figma },
+        { name: 'Design', level: 85, icon: Palette },
         { name: 'Security', level: 92, icon: Lock },
         { name: 'Deployment', level: 90, icon: Settings }
       ]
